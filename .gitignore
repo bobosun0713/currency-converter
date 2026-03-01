@@ -14,6 +14,7 @@ dist-ssr
 coverage
 *.local
 .cache
+.agent
 
 /cypress/videos/
 /cypress/screenshots/
