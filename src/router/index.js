@@ -5,13 +5,18 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: () => import("../views/Home.vue")
+      name: "converter",
+      component: () => import("../views/ConverterView.vue")
     },
     {
-      path: "/about",
-      name: "about",
-      component: () => import("../views/About.vue")
+      path: "/rates",
+      name: "rates",
+      component: () => import("../views/RatesView.vue")
+    },
+    {
+      path: "/favorites",
+      name: "favorites",
+      component: () => import("../views/FavoritesView.vue")
     }
   ]
 });
