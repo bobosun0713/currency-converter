@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CurrencyEx Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#196ee6",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111821",
+                        "surface-dark": "#1c2430",
+                        "border-dark": "#292f38",
+                        "text-secondary": "#9da9b8",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111821; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #292f38; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3c4553; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-border-dark px-6 py-3 bg-white dark:bg-surface-dark z-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-8 flex items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-2xl">currency_exchange</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight">ForexHub</h2>
+</div>
+<!-- Search Bar -->
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar -->
+<aside class="hidden lg:flex flex-col w-64 border-r border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark py-6 px-4 gap-6 justify-between">
+<div class="flex flex-col gap-2"><p class="px-3 text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">Menu</p>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary text-white shadow-md shadow-primary/20 transition-all" href="#">
+<span class="material-symbols-outlined">calculate</span>
+<span class="text-sm font-semibold">幣值轉換器</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-text-secondary hover:bg-slate-100 dark:hover:bg-background-dark hover:text-slate-900 dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="text-sm font-medium">當前幣值匯率</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-text-secondary hover:bg-slate-100 dark:hover:bg-background-dark hover:text-slate-900 dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="text-sm font-medium">我的最愛</span>
+</a></div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col overflow-y-auto bg-background-light dark:bg-background-dark p-4 md:p-8">
+<div class="max-w-5xl mx-auto w-full flex flex-col gap-8">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Currency Converter</h1>
+<p class="text-slate-500 dark:text-text-secondary mt-2">Check live foreign currency exchange rates and historical trends.</p>
+</div>
+<div class="text-right hidden md:block">
+<p class="text-sm font-medium text-slate-500 dark:text-text-secondary">Last updated</p>
+<div class="flex items-center gap-2 justify-end">
+<span class="size-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-sm font-bold text-slate-900 dark:text-white">Just now</span>
+</div>
+</div>
+</div>
+<!-- Converter Card -->
+<div class="bg-white dark:bg-surface-dark rounded-2xl shadow-sm border border-slate-200 dark:border-border-dark p-6 md:p-8">
+<!-- Input Row -->
+<div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 items-end mb-8">
+<!-- From -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-500 dark:text-text-secondary">Amount &amp; From</label>
+<div class="flex rounded-xl border border-slate-200 dark:border-border-dark bg-slate-50 dark:bg-background-dark overflow-hidden focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all">
+<input class="flex-1 bg-transparent border-none text-slate-900 dark:text-white text-xl font-bold p-4 focus:ring-0 placeholder:text-slate-400" type="number" value="1000"/>
+<div class="w-px bg-slate-200 dark:bg-border-dark my-2"></div>
+<select class="bg-transparent border-none text-slate-900 dark:text-white font-bold pr-10 pl-4 py-4 focus:ring-0 cursor-pointer">
+<option>USD</option>
+<option>EUR</option>
+<option>GBP</option>
+<option>JPY</option>
+</select>
+</div>
+</div>
+<!-- Swap Button -->
+<button class="flex items-center justify-center size-12 rounded-full bg-slate-100 dark:bg-background-dark border border-slate-200 dark:border-border-dark text-primary hover:bg-primary hover:text-white hover:border-primary transition-all mx-auto md:mb-1 shadow-sm">
+<span class="material-symbols-outlined">swap_horiz</span>
+</button>
+<!-- To -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-500 dark:text-text-secondary">Converted To</label>
+<div class="flex rounded-xl border border-slate-200 dark:border-border-dark bg-slate-50 dark:bg-background-dark overflow-hidden focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all">
+<input class="flex-1 bg-transparent border-none text-slate-900 dark:text-white text-xl font-bold p-4 focus:ring-0" readonly="" type="text" value="923.45"/>
+<div class="w-px bg-slate-200 dark:bg-border-dark my-2"></div>
+<select class="bg-transparent border-none text-slate-900 dark:text-white font-bold pr-10 pl-4 py-4 focus:ring-0 cursor-pointer">
+<option>EUR</option>
+<option>USD</option>
+<option>GBP</option>
+<option>JPY</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Result & Action -->
+<div class="flex flex-col md:flex-row items-center justify-between gap-6 pt-6 border-t border-slate-100 dark:border-border-dark">
+<div class="text-center md:text-left">
+<p class="text-sm font-medium text-slate-500 dark:text-text-secondary mb-1">1.00 USD = 0.92345 EUR</p>
+<p class="text-xs text-slate-400 dark:text-slate-600">Mid-market exchange rate at 14:02 UTC</p>
+</div>
+<div class="flex gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none py-3 px-6 rounded-lg border border-slate-200 dark:border-border-dark text-slate-700 dark:text-white font-bold hover:bg-slate-50 dark:hover:bg-background-dark transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">notifications_active</span>
+                                Set Alert
+                            </button>
+<button class="flex-1 md:flex-none py-3 px-8 rounded-lg bg-primary text-white font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-blue-500/30">
+                                Convert
+                            </button>
+</div>
+</div>
+</div>
+<!-- Charts Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Main Chart -->
+<div class="lg:col-span-2 bg-white dark:bg-surface-dark rounded-2xl shadow-sm border border-slate-200 dark:border-border-dark p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">USD to EUR Chart</h3>
+<div class="flex bg-slate-100 dark:bg-background-dark rounded-lg p-1">
+<button class="px-3 py-1 text-xs font-bold rounded text-slate-500 dark:text-text-secondary hover:text-slate-900 dark:hover:text-white">1D</button>
+<button class="px-3 py-1 text-xs font-bold rounded bg-white dark:bg-surface-dark text-primary shadow-sm">1W</button>
+<button class="px-3 py-1 text-xs font-bold rounded text-slate-500 dark:text-text-secondary hover:text-slate-900 dark:hover:text-white">1M</button>
+<button class="px-3 py-1 text-xs font-bold rounded text-slate-500 dark:text-text-secondary hover:text-slate-900 dark:hover:text-white">1Y</button>
+</div>
+</div>
+<!-- Chart Placeholder -->
+<div class="relative w-full h-64 rounded-lg bg-gradient-to-b from-primary/5 to-transparent border-b border-l border-slate-200 dark:border-border-dark flex items-end px-4 pb-0 overflow-hidden" data-alt="Line chart showing currency fluctuation trends">
+<!-- Simulated Chart Lines -->
+<svg class="w-full h-full absolute bottom-0 left-0" preserveaspectratio="none" viewbox="0 0 100 50">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#196ee6" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#196ee6" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,40 Q10,35 20,38 T40,25 T60,30 T80,15 T100,20 V50 H0 Z" fill="url(#chartGradient)"></path>
+<path d="M0,40 Q10,35 20,38 T40,25 T60,30 T80,15 T100,20" fill="none" stroke="#196ee6" stroke-width="0.5"></path>
+</svg>
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between py-4 pointer-events-none opacity-10">
+<div class="w-full h-px bg-slate-900 dark:bg-white"></div>
+<div class="w-full h-px bg-slate-900 dark:bg-white"></div>
+<div class="w-full h-px bg-slate-900 dark:bg-white"></div>
+<div class="w-full h-px bg-slate-900 dark:bg-white"></div>
+<div class="w-full h-px bg-slate-900 dark:bg-white"></div>
+</div>
+</div>
+<div class="flex justify-between mt-4 text-xs font-medium text-slate-400 dark:text-slate-600">
+<span>Mon</span>
+<span>Tue</span>
+<span>Wed</span>
+<span>Thu</span>
+<span>Fri</span>
+<span>Sat</span>
+<span>Sun</span>
+</div>
+</div>
+<!-- Quick Favorites / Stats -->
+<div class="bg-white dark:bg-surface-dark rounded-2xl shadow-sm border border-slate-200 dark:border-border-dark p-6 flex flex-col gap-4">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Popular Pairs</h3>
+<button class="text-primary text-sm font-bold hover:underline">View All</button>
+</div>
+<!-- Pair Item 1 -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-background-dark hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="bg-white dark:bg-surface-dark p-1.5 rounded-lg shadow-sm">
+<span class="text-lg">🇪🇺</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">EUR/USD</p>
+<p class="text-xs text-red-500 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]">trending_down</span> -0.24%
+                                    </p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-slate-900 dark:text-white">1.0821</p>
+</div>
+</div>
+<!-- Pair Item 2 -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-background-dark hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="bg-white dark:bg-surface-dark p-1.5 rounded-lg shadow-sm">
+<span class="text-lg">🇬🇧</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">GBP/USD</p>
+<p class="text-xs text-green-500 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]">trending_up</span> +0.15%
+                                    </p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-slate-900 dark:text-white">1.2645</p>
+</div>
+</div>
+<!-- Pair Item 3 -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-background-dark hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="bg-white dark:bg-surface-dark p-1.5 rounded-lg shadow-sm">
+<span class="text-lg">🇯🇵</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">USD/JPY</p>
+<p class="text-xs text-green-500 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]">trending_up</span> +0.82%
+                                    </p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-slate-900 dark:text-white">148.12</p>
+</div>
+</div>
+<!-- Add New -->
+<button class="mt-2 w-full py-2.5 rounded-lg border border-dashed border-slate-300 dark:border-slate-600 text-slate-500 dark:text-text-secondary font-semibold text-sm hover:border-primary hover:text-primary transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+                            Add Favorite Pair
+                        </button>
+</div>
+</div>
+<!-- Recent Transactions / History Table -->
+<div class="bg-white dark:bg-surface-dark rounded-2xl shadow-sm border border-slate-200 dark:border-border-dark overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-border-dark flex items-center justify-between">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Recent Conversions</h3>
+<div class="flex gap-2">
+<button class="p-1.5 text-text-secondary hover:text-slate-900 dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-1.5 text-text-secondary hover:text-slate-900 dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-slate-50 dark:bg-background-dark text-slate-500 dark:text-text-secondary text-xs uppercase font-bold tracking-wider">
+<tr>
+<th class="px-6 py-4">Date</th>
+<th class="px-6 py-4">From</th>
+<th class="px-6 py-4">To</th>
+<th class="px-6 py-4">Rate</th>
+<th class="px-6 py-4 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-border-dark">
+<tr class="hover:bg-slate-50 dark:hover:bg-background-dark/50 transition-colors">
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300 font-medium">Oct 24, 2023</td>
+<td class="px-6 py-4 text-sm text-slate-900 dark:text-white font-bold">1,500.00 USD</td>
+<td class="px-6 py-4 text-sm text-slate-900 dark:text-white font-bold">1,412.30 EUR</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">0.9415</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                            Completed
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-background-dark/50 transition-colors">
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300 font-medium">Oct 22, 2023</td>
+<td class="px-6 py-4 text-sm text-slate-900 dark:text-white font-bold">500.00 GBP</td>
+<td class="px-6 py-4 text-sm text-slate-900 dark:text-white font-bold">612.45 USD</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">1.2249</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                            Completed
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-background-dark/50 transition-colors">
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300 font-medium">Oct 20, 2023</td>
+<td class="px-6 py-4 text-sm text-slate-900 dark:text-white font-bold">2,000.00 JPY</td>
+<td class="px-6 py-4 text-sm text-slate-900 dark:text-white font-bold">13.40 USD</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">0.0067</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-300">
+                                            Saved
+                                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

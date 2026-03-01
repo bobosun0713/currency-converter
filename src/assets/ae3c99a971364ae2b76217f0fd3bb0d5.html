@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Favorite Currencies Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#196ee6",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111821",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 px-10 py-4 bg-white dark:bg-slate-900">
+<div class="flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9 hidden md:flex"><a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">幣值轉換器</a><a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">當前幣值匯率</a><a class="text-primary text-sm font-bold leading-normal" href="#">我的最愛</a></div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 md:px-10 py-8 max-w-[1440px] mx-auto w-full">
+<!-- Page Title Area -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] text-slate-900 dark:text-white">Favorite Currencies</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-normal">Track your most used currency pairs in real-time.</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="text-sm font-bold">Add New Pair</span>
+</button>
+</div>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Card 1: USD to EUR -->
+<div class="flex flex-col gap-4 rounded-xl p-6 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2">
+<img alt="USA Flag" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 object-cover" data-alt="USA Flag icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9hDvSydXr81lL7mq3y46WwA22PFCyXMgtT7zB_q0cvvvmLvyP7yEMVB_wE7EaUNeZe4OrPVYvFUdMvgX7KAWWivDOHaRA3y5R9ihVXRkUSV1W83EOPXromLXhm8l7VMAK54aNrXJ7Lme5pJc5gBNFsX3Aiz0PWitwahiZuHI7er9U0cQpyNqxxsFFualJoskJd-7cbIBXm1AwVGFnW3NVasxKg3-1nwe82bZaizQtVw1bOVnNtfKxIMScz6D64M_Eh-gTgyFbZ3sq"/>
+<img alt="EU Flag" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 object-cover" data-alt="EU Flag icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjdQWxxznlQLrWf1_PesPn94syLmJUrwWiGQSyM-hGlnPzhE8_3e1_cVbExFhyitV8cjQo9hIBfrV8LesMc7iGTu73r6A_sFX8uG-bx3VmdaRuql1Zqt5fdjIerBNhi1Yj4akM1bANK8v_CG1XrhnBBFluZ_f2Ocu5Z-qAI1J2ROsiT_9CF7niyfw0Ww-O_yjk9sQCbd2O29z_p3sjf-eDUxFOx0_SQuaKJQPRy9l7BIASG77RpA89QqFpLPZ-G7AJArNb7__cNzNl"/>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-base font-bold leading-tight">USD / EUR</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">United States / Eurozone</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex items-end gap-2 mt-2">
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-tight">0.92 €</p>
+<span class="flex items-center text-emerald-500 text-sm font-medium mb-1 bg-emerald-500/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[16px] mr-0.5">trending_up</span>
+                            +0.05%
+                        </span>
+</div>
+<!-- Sparkline -->
+<div class="h-16 w-full relative">
+<!-- Simplified Sparkline Path -->
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 100 40">
+<path d="M0 30 Q 10 25, 20 28 T 40 20 T 60 25 T 80 15 L 100 10" fill="none" stroke="#10b981" stroke-linecap="round" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<defs>
+<lineargradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#10b981;stop-opacity:0.2"></stop>
+<stop offset="100%" style="stop-color:#10b981;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+<path d="M0 30 Q 10 25, 20 28 T 40 20 T 60 25 T 80 15 L 100 10 V 40 H 0 Z" fill="url(#grad1)" stroke="none"></path>
+</svg>
+</div>
+<div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex gap-2">
+<button class="flex-1 flex items-center justify-center gap-2 h-9 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-[18px]">currency_exchange</span>
+                            Quick Convert
+                        </button>
+</div>
+</div>
+<!-- Card 2: JPY to TWD -->
+<div class="flex flex-col gap-4 rounded-xl p-6 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2">
+<img alt="Japan Flag" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 object-cover" data-alt="Japan Flag icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl1oS2aa12gkHwNXs0l8wsD6_dgqjOs8Xs_00Ss6SucgD8tI1iZyKzKD-sEAwjKokJPNk78xWrX9QyERbotjeb2hLE6FT6CsU9YWZVIINVkC5sMakDiy8BLuLvl9a7e2EM-T5A4wL-WmXNYDVwQLXcNqX2JQzBw51egUbMR6ZKpT5aIgW7JTEMwyFHYNYR6BLOHIgkX40yZYcOp-PZe3tvAgEaucIFa-2ZAOqdtZzDL7igpy6CSlfSPWMb0X-AOthwv-lf6Pstzax7"/>
+<img alt="Taiwan Flag" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 object-cover" data-alt="Taiwan Flag icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuKFZ1U8FrGpd8SkxNc-IiLC02z-CjTedSNC5Zdqc6iaiU1FKnoMLMjvreWYWfYpt9L3KNiPOM88V4pQQaZtX-VmDYm-6bPgx9elOCC4QBMD-HBP6R0j7hvOBkjjoIIVXLH6zIgjA1fUFGKIJAWRucaDMm5Fn2JNvCo6IHhtQ7S1u_fZDiU1RCtj9Zc7KvFrG9zbGX06OJ_epT4bZ3vXgsdhYdc-r9PBSmccfmPQ_stDjtCyTUTYTlhl3RAiEuEd2PVCVOk6u_JyXy"/>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-base font-bold leading-tight">JPY / TWD</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Japan / Taiwan</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex items-end gap-2 mt-2">
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-tight">0.21 NT$</p>
+<span class="flex items-center text-emerald-500 text-sm font-medium mb-1 bg-emerald-500/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[16px] mr-0.5">trending_up</span>
+                            +0.12%
+                        </span>
+</div>
+<!-- Sparkline -->
+<div class="h-16 w-full relative">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 100 40">
+<path d="M0 25 Q 20 30, 40 20 T 70 15 L 100 5" fill="none" stroke="#10b981" stroke-linecap="round" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<path d="M0 25 Q 20 30, 40 20 T 70 15 L 100 5 V 40 H 0 Z" fill="url(#grad1)" stroke="none"></path>
+</svg>
+</div>
+<div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex gap-2">
+<button class="flex-1 flex items-center justify-center gap-2 h-9 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-[18px]">currency_exchange</span>
+                            Quick Convert
+                        </button>
+</div>
+</div>
+<!-- Card 3: GBP to USD (Downward Trend) -->
+<div class="flex flex-col gap-4 rounded-xl p-6 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2">
+<img alt="UK Flag" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 object-cover" data-alt="UK Flag icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMQvTTKz2t_qRGmwy4Nehig1GmGGf5zpTnjzw7UC6uG4TjKTgFMzD6P1CehNjsnY7K-bIo-RqjePBo2emwhK2FuXCJcs6XC4qUEytmyH4CM0KaEoOf3xRHwjZ23m2L-EnC-qrmqSWRaG_72KoY70fd-RHFp7F1LTa4wWEnxFd8e8gmxVUL1z-h57tN9NrYoP7EqHuABfsqnNwM_MEae4SeTQJlR_21OMkZTtwzX9W3BjxgMw8QFuF48utinu2QUMYsidsW25K-QEod"/>
+<img alt="USA Flag" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 object-cover" data-alt="USA Flag icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNW_7ubOxdoxhef1jYcS2dISMUHrX-d15khPEaCupfCuE8Rbf011IwJ5qwdIiWZPIn2KowreDb5C9wQ5uTIo6jHDXXhnfNlstcW1QTuhnn8Ds4F30ZD-jMPbBhCR7t0AfV8K7HDmOs8UANy2X9TbneZOTsLRiH9GeJnJtmuQpto3C6PWlPCsE7Iot_ZOIqiB2yXok9XCGJvj1s78PoDeLw0Elg8dcqV7FANzvcmbhW3MuIQMJysSvMCd8yjmPc-dZ8-Oa4zAgEmETa"/>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-base font-bold leading-tight">GBP / USD</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">United Kingdom / US</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex items-end gap-2 mt-2">
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-tight">1.27 $</p>
+<span class="flex items-center text-rose-500 text-sm font-medium mb-1 bg-rose-500/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[16px] mr-0.5">trending_down</span>
+                            -0.02%
+                        </span>
+</div>
+<!-- Sparkline -->
+<div class="h-16 w-full relative">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 100 40">
+<path d="M0 10 Q 30 15, 50 20 T 80 30 L 100 35" fill="none" stroke="#f43f5e" stroke-linecap="round" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<defs>
+<lineargradient id="grad2" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#f43f5e;stop-opacity:0.2"></stop>
+<stop offset="100%" style="stop-color:#f43f5e;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+<path d="M0 10 Q 30 15, 50 20 T 80 30 L 100 35 V 40 H 0 Z" fill="url(#grad2)" stroke="none"></path>
+</svg>
+</div>
+<div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex gap-2">
+<button class="flex-1 flex items-center justify-center gap-2 h-9 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-[18px]">currency_exchange</span>
+                            Quick Convert
+                        </button>
+</div>
+</div>
+<!-- Card 4: AUD to CAD -->
+<div class="flex flex-col gap-4 rounded-xl p-6 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2">
+<img alt="Australia Flag" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 object-cover" data-alt="Australia Flag icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs-TMOarEP7TXxNrIp1a8409QGRxyR0Rh2qTe-vh99dQQEpFHc2bv_sEgUgZ2V1KQSn6RPg18if1kXRoRkPPwC3twdyDm_QqbUHYEHxIkcBQvi8MeOw_dgbG9xuF1ZvQo8ppM_V32xi1T0r0_YAUbH0m8KbmZieRcTgt9w1EG6ROnXMBaZM3DHf3ppuX3r5wZly3Us3xV50HRIDPYEunjb9Wq6QA_p9rFvgzdI8j3MwUepd-YBySP2OKkrF8Isg22MYlBafXHC3_yb"/>
+<img alt="Canada Flag" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 object-cover" data-alt="Canada Flag icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXTmpzwww9CW50PwgSLFTSVl3bc2gOe3GtoxfqkTxCHpdkELuvmOkRmWpNt2Isqc3bKpn62HX5V4emeNK4NtYZQ1XVulmlMump5PE4j5wLodn4nKYu02oG6D2hs4lOknSn3XBFfZ9A87GTgNgeTfPEx7MBBA-Pb56OMuUfwJ0m4dLYcuLJYnf6g887fdtxAShb0odpqARGvsqYENiHWYRcqfHorckhGp4avqFDZ1NHPoftE1nMeM4nhvD8YM2GPM34nm4PjiMzjfnh"/>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-base font-bold leading-tight">AUD / CAD</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Australia / Canada</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex items-end gap-2 mt-2">
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-tight">0.90 $</p>
+<span class="flex items-center text-emerald-500 text-sm font-medium mb-1 bg-emerald-500/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[16px] mr-0.5">trending_up</span>
+                            +0.85%
+                        </span>
+</div>
+<!-- Sparkline -->
+<div class="h-16 w-full relative">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 100 40">
+<path d="M0 35 Q 15 25, 30 30 T 60 15 T 80 20 L 100 5" fill="none" stroke="#10b981" stroke-linecap="round" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<path d="M0 35 Q 15 25, 30 30 T 60 15 T 80 20 L 100 5 V 40 H 0 Z" fill="url(#grad1)" stroke="none"></path>
+</svg>
+</div>
+<div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex gap-2">
+<button class="flex-1 flex items-center justify-center gap-2 h-9 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-[18px]">currency_exchange</span>
+                            Quick Convert
+                        </button>
+</div>
+</div>
+<!-- Card 5: CHF to SGD -->
+<div class="flex flex-col gap-4 rounded-xl p-6 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2">
+<img alt="Switzerland Flag" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 object-cover" data-alt="Switzerland Flag icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2u8QZqzLULwyCAMDDzj6qSKcHLfcIJ623q145SJgets-eHx3GFC-94MckNizSgUDhSxuXlJHoJpYdglMT4I8pk6gnVR1RYg8hQ35Gn6NZj8vBAqCZnhSL-kTTYT0neho29Lqho3CoNX8Z9rov-Bs0uaxNPMHQeSiTFKv7x38pLsMLD744L1gUkCHreOjGTI9PBYK6UpFcPYkUH3T4-UdoXcJwj84dKI0pBSgzw1LkzxEwSnUk5-FvZdoCvPtcEsBvHY6EYSNlxmVh"/>
+<img alt="Singapore Flag" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 object-cover" data-alt="Singapore Flag icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5SdCWnRfriQZwoG_8xQ-vy88ZJDskvdfThRJdJ09f0k_DTdP4dxAUAXQQJYhKGwcqf_Cv0cgWOtD3fnvIbxH_lyCItGX_LKyOAvS2nFF6sVd_hvwzAF2wsCHWA1b4bkZmb_jPPLHKW9eTeP17hQQZEuA09jkC9A356ij_R7weujrGUbyVS3N_VuA2_jCR4CkWsRhOOfyWQ8_6jgmXeJSQuWA2n1jTOTXr0GzEhQUwiLzki7zHeV1kh72gFzk9xRRONkojL8jVKqys"/>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-base font-bold leading-tight">CHF / SGD</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Switzerland / Singapore</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex items-end gap-2 mt-2">
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-tight">1.52 S$</p>
+<span class="flex items-center text-rose-500 text-sm font-medium mb-1 bg-rose-500/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[16px] mr-0.5">trending_down</span>
+                            -0.15%
+                        </span>
+</div>
+<!-- Sparkline -->
+<div class="h-16 w-full relative">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 100 40">
+<path d="M0 15 Q 25 10, 40 25 T 70 30 L 100 38" fill="none" stroke="#f43f5e" stroke-linecap="round" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<path d="M0 15 Q 25 10, 40 25 T 70 30 L 100 38 V 40 H 0 Z" fill="url(#grad2)" stroke="none"></path>
+</svg>
+</div>
+<div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex gap-2">
+<button class="flex-1 flex items-center justify-center gap-2 h-9 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-[18px]">currency_exchange</span>
+                            Quick Convert
+                        </button>
+</div>
+</div>
+<!-- Add New Card Placeholder -->
+<div class="flex flex-col gap-4 rounded-xl p-6 border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-primary dark:hover:border-primary bg-transparent items-center justify-center cursor-pointer group transition-all min-h-[300px]">
+<div class="size-16 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary text-[32px]">add</span>
+</div>
+<div class="text-center">
+<p class="text-slate-900 dark:text-white text-lg font-bold">Add Currency Pair</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Track a new exchange rate</p>
+</div>
+</div>
+</div>
+<!-- Market Overview Section -->
+<div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Large Chart -->
+<div class="lg:col-span-2 rounded-xl p-6 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Market Volatility Analysis</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Comparison of your top 3 currencies over 24h</p>
+</div>
+<div class="flex gap-2">
+<span class="flex items-center gap-1 text-xs font-medium text-slate-500 dark:text-slate-400">
+<span class="w-2 h-2 rounded-full bg-primary"></span> USD/EUR
+                             </span>
+<span class="flex items-center gap-1 text-xs font-medium text-slate-500 dark:text-slate-400">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span> JPY/TWD
+                             </span>
+</div>
+</div>
+<div class="h-[250px] w-full flex items-end gap-2 relative">
+<!-- Y Axis Labels -->
+<div class="absolute left-0 top-0 bottom-8 w-8 flex flex-col justify-between text-xs text-slate-400">
+<span>Hi</span>
+<span>Med</span>
+<span>Lo</span>
+</div>
+<!-- Chart Area -->
+<div class="ml-8 flex-1 h-full relative border-l border-b border-slate-200 dark:border-slate-700">
+<!-- Grid Lines -->
+<div class="absolute top-0 w-full h-px bg-slate-100 dark:bg-slate-800"></div>
+<div class="absolute top-1/2 w-full h-px bg-slate-100 dark:bg-slate-800"></div>
+<!-- Line 1 -->
+<svg class="absolute inset-0 w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M0 60 Q 20 50, 40 55 T 70 30 L 100 40" fill="none" stroke="#196ee6" stroke-linecap="round" stroke-width="3" vector-effect="non-scaling-stroke"></path>
+</svg>
+<!-- Line 2 -->
+<svg class="absolute inset-0 w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M0 80 Q 30 70, 50 60 T 80 50 L 100 20" fill="none" stroke="#10b981" stroke-dasharray="4 4" stroke-linecap="round" stroke-width="3" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+</div>
+<div class="flex justify-between ml-8 mt-2 text-xs text-slate-400 font-medium">
+<span>00:00</span>
+<span>06:00</span>
+<span>12:00</span>
+<span>18:00</span>
+<span>Now</span>
+</div>
+</div>
+<!-- Quick Converter Widget -->
+<div class="rounded-xl p-6 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 flex flex-col h-full">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-6">Quick Converter</h3>
+<div class="flex flex-col gap-4 flex-1">
+<!-- Input 1 -->
+<div class="relative">
+<label class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 block">From</label>
+<div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-3 border border-transparent focus-within:border-primary transition-colors">
+<div class="flex items-center gap-2 pr-3 border-r border-slate-300 dark:border-slate-600">
+<img alt="US Flag" class="w-6 h-6 rounded-full object-cover" data-alt="US Flag small icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6UqnnlWml9Y6PGOyHBXO-x5gMkAofq5GbRI9VnHWgfdNXGW50FvMWxmIbqj8EfAQNUwdLWDL4pbnGmqGYfIB-EPNyJo065BXOUBfqtbU8Orulmys8S8TVoQ-eluxNbTNjpSq-dqW6mumODS9AWnYdbQi-dry_4djvDZ805UNgK42PWjvPKiPQDptIncN_JjecQ01o2BdE1Dhv3j263-gCrRWOHvSQV7_hhc_xkyQ7MzmyQnzXJ2x0eau2z_gkZAlbTSlcIoG_fBms"/>
+<span class="font-bold text-slate-900 dark:text-white">USD</span>
+<span class="material-symbols-outlined text-slate-400 text-[18px]">expand_more</span>
+</div>
+<input class="w-full bg-transparent border-none text-right font-bold text-slate-900 dark:text-white focus:ring-0 p-0" placeholder="0.00" type="number" value="1000"/>
+</div>
+</div>
+<!-- Swap Button -->
+<div class="flex justify-center -my-2 z-10">
+<button class="bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full p-2 hover:bg-primary hover:text-white transition-all shadow-sm border-2 border-white dark:border-slate-900">
+<span class="material-symbols-outlined text-[20px]">swap_vert</span>
+</button>
+</div>
+<!-- Input 2 -->
+<div class="relative">
+<label class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 block">To</label>
+<div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-3 border border-transparent focus-within:border-primary transition-colors">
+<div class="flex items-center gap-2 pr-3 border-r border-slate-300 dark:border-slate-600">
+<img alt="EU Flag" class="w-6 h-6 rounded-full object-cover" data-alt="EU Flag small icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1pTNPUTnLNkqpPty7MF7JO4l1nVD4ogdRAwRaeFCllObx31mWtC0wAFgD_eM-ZkORJw96Rjk-5hsFbB7A3GgTbJFiLJ6JZFhrrrAFtKrEARD43Ecd4csAZkzmO5dHZJ1Q3GBNR7XhonGS6hxGKPhWTtu2EBJtAidqHYZTCHbcWUcC0GcMRdlYqunK2kUpgcCCPE6EX49qVHPUiyUwUCsFg--jWVQdDGPHOxVs8bEZtoi5MxqtVYHjsCB59OzeH-nFpRqsUQwIhm7H"/>
+<span class="font-bold text-slate-900 dark:text-white">EUR</span>
+<span class="material-symbols-outlined text-slate-400 text-[18px]">expand_more</span>
+</div>
+<input class="w-full bg-transparent border-none text-right font-bold text-slate-900 dark:text-white focus:ring-0 p-0" placeholder="0.00" readonly="" type="number" value="920.50"/>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800">
+<div class="flex justify-between text-sm mb-4">
+<span class="text-slate-500 dark:text-slate-400">Rate</span>
+<span class="font-medium text-slate-900 dark:text-white">1 USD = 0.9205 EUR</span>
+</div>
+<button class="w-full bg-primary hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-colors shadow-lg shadow-blue-500/20">
+                            Convert Now
+                        </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live Exchange Rates - CurrencyConverter</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#196ee6",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111821",
+                        // Neutrals derived from primary blue hue (approx 215deg)
+                        "neutral-50": "#f0f4fa",
+                        "neutral-100": "#e1e9f5",
+                        "neutral-200": "#c3d3eb",
+                        "neutral-300": "#a5bde0",
+                        "neutral-400": "#87a7d6",
+                        "neutral-500": "#6991cc",
+                        "neutral-600": "#4d74ab",
+                        "neutral-700": "#345075",
+                        "neutral-800": "#1d2e42",
+                        "neutral-900": "#111821", // Matches background-dark
+                    },
+                    fontFamily: {
+                        display: ["Manrope", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden">
+<div class="relative flex h-full w-full flex-col group/design-root">
+<div class="flex h-full grow flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-neutral-200 dark:border-neutral-700 px-6 lg:px-10 py-4 bg-white dark:bg-neutral-900">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary flex items-center justify-center rounded-lg bg-primary/10">
+<span class="material-symbols-outlined text-2xl">currency_exchange</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">GlobalRate</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden md:flex items-center gap-9"><a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">幣值轉換器</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">當前幣值匯率</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">我的最愛</a></nav>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-8">
+<div class="flex flex-col max-w-[1200px] flex-1 w-full gap-6">
+<!-- Page Header -->
+<div class="flex flex-wrap justify-between items-end gap-4 pb-2">
+<div class="flex min-w-72 flex-col gap-2">
+<h1 class="text-slate-900 dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Live Exchange Rates</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-normal">Real-time exchange rates for major world currencies against USD.</p>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">update</span>
+<span>Last updated: Oct 24, 14:30 UTC</span>
+</div>
+</div>
+<!-- Search and Filter Bar -->
+<div class="flex flex-col sm:flex-row gap-4">
+<label class="flex flex-col min-w-40 h-12 w-full sm:max-w-md relative group">
+<div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full h-full rounded-lg text-slate-900 dark:text-white border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 placeholder:text-slate-400 dark:placeholder:text-slate-500 px-4 pl-12 text-base font-normal leading-normal focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm" placeholder="Search currency (e.g. EUR, JPY)" value=""/>
+</label>
+<div class="flex gap-2 ml-auto">
+<button class="flex items-center gap-2 h-12 px-4 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-700 text-slate-700 dark:text-slate-300 transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+<span class="font-medium">Filter</span>
+</button>
+<button class="flex items-center gap-2 h-12 px-4 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-700 text-slate-700 dark:text-slate-300 transition-colors">
+<span class="material-symbols-outlined">download</span>
+<span class="hidden sm:inline font-medium">Export</span>
+</button>
+</div>
+</div>
+<!-- Rates Table -->
+<div class="@container w-full overflow-x-auto rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-neutral-50 dark:bg-neutral-800/50 border-b border-neutral-200 dark:border-neutral-700">
+<th class="px-6 py-4 text-slate-900 dark:text-white text-sm font-semibold leading-normal w-16">Flag</th>
+<th class="px-6 py-4 text-slate-900 dark:text-white text-sm font-semibold leading-normal">Currency Name</th>
+<th class="hidden sm:table-cell px-6 py-4 text-slate-900 dark:text-white text-sm font-semibold leading-normal w-32">Code</th>
+<th class="px-6 py-4 text-slate-900 dark:text-white text-sm font-semibold leading-normal text-right w-40">Rate (1 USD =)</th>
+<th class="hidden md:table-cell px-6 py-4 text-slate-900 dark:text-white text-sm font-semibold leading-normal text-right w-40">Change (24h)</th>
+<th class="px-6 py-4 text-center w-20">
+<span class="sr-only">Favorite</span>
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-sm">favorite</span>
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-neutral-200 dark:divide-neutral-700">
+<!-- Row 1: Euro -->
+<tr class="group hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="size-8 rounded-full bg-cover bg-center border border-neutral-200 dark:border-neutral-700" data-alt="European Union Flag" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDqW65bDk-O3GFQhxZrm8tSvn-KCvAU51Lpp88JA62iVH5z4p2Pb7dkTdUhsaqE2pBQGN9Y-I80BjxeVlPmocBWiyoxt8aSspPM2-2JWSLlV6RrSPatIbJakkHujInfsGIk_GE_LiUP6st8w1UlBJGBBtYl8wC6ieJH4YDqlWfroVR_je_ly_SIRsIHhekrN9m5xvN5YjiTPBqOnePSbVB6vQgDnWguyguVtNHw7lUgiZmi7a_MZjqxEMgN-a6_9g9p58ivRD7IsqKb");'></div>
+</td>
+<td class="px-6 py-4">
+<div class="text-slate-900 dark:text-white text-sm font-medium">Euro</div>
+</td>
+<td class="hidden sm:table-cell px-6 py-4">
+<div class="text-slate-500 dark:text-slate-400 text-sm font-medium">EUR</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-slate-900 dark:text-white text-sm font-bold font-mono">0.92</div>
+</td>
+<td class="hidden md:table-cell px-6 py-4 text-right">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                            0.15%
+                                        </div>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-slate-400 hover:text-pink-500 dark:text-slate-600 dark:hover:text-pink-500 transition-colors focus:outline-none">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: British Pound -->
+<tr class="group hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="size-8 rounded-full bg-cover bg-center border border-neutral-200 dark:border-neutral-700" data-alt="United Kingdom Flag" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBt4kyZgHosMwCyPAFaT7J3GZzxZvAHayPLrwp-cLSlyEPFLtRKHsYG6fjxKM4pwmanB_Ox8Ovw2zGhdOo7Ec-PBgpMkXkZJxkjNCUZok4AFI_AFGPui72poZxA8q5PiM6sWttyNYUsO1DuJBWxvUVZ748qvpyTzDMYug0U1yZl-wZs11kP2K_nq1oA3nmLkU3ORgo4_b0943VXnQxx2LEAuxaQ12BKQ4l4P0zWKjGI7Rd_3u3jrT4XQ2YyhVNR119p6MgNWPd7Az7g");'></div>
+</td>
+<td class="px-6 py-4">
+<div class="text-slate-900 dark:text-white text-sm font-medium">British Pound</div>
+</td>
+<td class="hidden sm:table-cell px-6 py-4">
+<div class="text-slate-500 dark:text-slate-400 text-sm font-medium">GBP</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-slate-900 dark:text-white text-sm font-bold font-mono">0.79</div>
+</td>
+<td class="hidden md:table-cell px-6 py-4 text-right">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+                                            0.05%
+                                        </div>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-pink-500 hover:text-pink-600 transition-colors focus:outline-none">
+<span class="material-symbols-outlined fill-current">favorite</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Japanese Yen -->
+<tr class="group hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="size-8 rounded-full bg-cover bg-center border border-neutral-200 dark:border-neutral-700" data-alt="Japan Flag" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAUSWeSw8Ddy76JCazkoKLLlt06t7Iw9hWQfg3BxaZrw1FnujvkjAkPKaXvx2o9oLpwPNZsKjKlQ3VQhkLOF6cLP-fIsiDW1pdwQE-4O6F3ZAAOz6-zs9dEhHq9YnJqjezqL8uCqWa4yoZMSnqh0jUmDs4GrnXQ3N4OXj1NPKvAEvWU3mVTbDzqqObxOX0awVE9XxdRCGzPEssE8jC2TSXlswXzzEURB1BC5dgN3b8ubUBvB6n8iiH5odJKK9n7s9ozDfQXuYDOxaYp");'></div>
+</td>
+<td class="px-6 py-4">
+<div class="text-slate-900 dark:text-white text-sm font-medium">Japanese Yen</div>
+</td>
+<td class="hidden sm:table-cell px-6 py-4">
+<div class="text-slate-500 dark:text-slate-400 text-sm font-medium">JPY</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-slate-900 dark:text-white text-sm font-bold font-mono">148.25</div>
+</td>
+<td class="hidden md:table-cell px-6 py-4 text-right">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                            0.32%
+                                        </div>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-slate-400 hover:text-pink-500 dark:text-slate-600 dark:hover:text-pink-500 transition-colors focus:outline-none">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Canadian Dollar -->
+<tr class="group hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="size-8 rounded-full bg-cover bg-center border border-neutral-200 dark:border-neutral-700" data-alt="Canada Flag" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD8tzYK89-oDgyuwAJPIhN_AUu38pNyMn-zRFXq-B6pIrR06SwooBRDINNqnEZu8F-5yunBhVzK1_kz8y5xDPgluV90vI-2zN4fuMGgUIjNYVrwt7ZvZDZJ4ZIExA0TAtnIhhiYRhTNPgER88ZYi2457HtNPol0ytu70agEUDnGQH45v9T-tSPGvQ3-q0y2S1jDw1tBon_WGZ3fzgRomBu3_RnpHgs_YTHieVlj6YZ_HGtuLW23fm8QbVmfjXwjizDe8a7TDlMMHhav");'></div>
+</td>
+<td class="px-6 py-4">
+<div class="text-slate-900 dark:text-white text-sm font-medium">Canadian Dollar</div>
+</td>
+<td class="hidden sm:table-cell px-6 py-4">
+<div class="text-slate-500 dark:text-slate-400 text-sm font-medium">CAD</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-slate-900 dark:text-white text-sm font-bold font-mono">1.35</div>
+</td>
+<td class="hidden md:table-cell px-6 py-4 text-right">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+                                            0.12%
+                                        </div>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-slate-400 hover:text-pink-500 dark:text-slate-600 dark:hover:text-pink-500 transition-colors focus:outline-none">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</td>
+</tr>
+<!-- Row 5: Swiss Franc -->
+<tr class="group hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="size-8 rounded-full bg-cover bg-center border border-neutral-200 dark:border-neutral-700" data-alt="Switzerland Flag" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCt-q0vPe9-6_E-sQwsylSIcmkesY1dh5Qodt5DkyhTPvU8cGnBIJw-hCOavU_Ql_JP6HEUYLQee51v20kn9c9T0BbiWMbjPpmPs-AaxwgjDqdQDzD2pRCjFK_TRS_8fyU8BMj8KiybP8GEO0blq-0esCTUIkEG39u-_ZDPwvBtqjrRlmaT0geX_cZjrBUOmvUOjInw9zwnHfJzT-TjAoKQzyUDq7GqC3Xnf3ANP7u0_dAkym4barj3h_NFhPlW_OECDqlNVnoscI3G");'></div>
+</td>
+<td class="px-6 py-4">
+<div class="text-slate-900 dark:text-white text-sm font-medium">Swiss Franc</div>
+</td>
+<td class="hidden sm:table-cell px-6 py-4">
+<div class="text-slate-500 dark:text-slate-400 text-sm font-medium">CHF</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-slate-900 dark:text-white text-sm font-bold font-mono">0.88</div>
+</td>
+<td class="hidden md:table-cell px-6 py-4 text-right">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                            0.02%
+                                        </div>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-slate-400 hover:text-pink-500 dark:text-slate-600 dark:hover:text-pink-500 transition-colors focus:outline-none">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</td>
+</tr>
+<!-- Row 6: Australian Dollar -->
+<tr class="group hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="size-8 rounded-full bg-cover bg-center border border-neutral-200 dark:border-neutral-700" data-alt="Australia Flag" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBr-pBj0-ZWod_rVw-oM1Bqa5AaOvHGebO7KBsYpXj_ys-qn84WgLGiD3h517teqSRy16-vUs-G-iXAedfN27BZPDLuKUSGFJZAba1il-RJqUdQm1omUYwvZnz3ZFQIzOQzfln7NXRX_aBOmxhsPVvkh5Qa_dizi27H-4h2rowvC-Jhmp1PRO2GPy1cdf7MCYG0VaBtM2zEyxvV19Vd__1YJF6oYPCAk7j3azXCuW6tvO8BzNUoNziq6bLRIrd3tgD8ESXlQbwsWtSn");'></div>
+</td>
+<td class="px-6 py-4">
+<div class="text-slate-900 dark:text-white text-sm font-medium">Australian Dollar</div>
+</td>
+<td class="hidden sm:table-cell px-6 py-4">
+<div class="text-slate-500 dark:text-slate-400 text-sm font-medium">AUD</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-slate-900 dark:text-white text-sm font-bold font-mono">1.52</div>
+</td>
+<td class="hidden md:table-cell px-6 py-4 text-right">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                            0.08%
+                                        </div>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-pink-500 hover:text-pink-600 transition-colors focus:outline-none">
+<span class="material-symbols-outlined fill-current">favorite</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between pt-4">
+<div class="text-sm text-slate-500 dark:text-slate-400 hidden sm:block">
+                            Showing <span class="font-bold text-slate-900 dark:text-white">1</span> to <span class="font-bold text-slate-900 dark:text-white">6</span> of <span class="font-bold text-slate-900 dark:text-white">142</span> currencies
+                        </div>
+<div class="flex items-center gap-2 ml-auto">
+<button class="flex size-10 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-slate-500 dark:text-slate-400 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-lg bg-primary text-white text-sm font-bold shadow-md shadow-primary/20">1</button>
+<button class="hidden sm:flex size-10 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-slate-700 dark:text-slate-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors text-sm font-medium">2</button>
+<button class="hidden sm:flex size-10 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-slate-700 dark:text-slate-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors text-sm font-medium">3</button>
+<div class="flex items-end justify-center px-1 text-slate-500">...</div>
+<button class="hidden sm:flex size-10 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-slate-700 dark:text-slate-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors text-sm font-medium">12</button>
+<button class="flex size-10 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-slate-700 dark:text-slate-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>
