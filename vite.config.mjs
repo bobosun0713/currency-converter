@@ -10,6 +10,7 @@ const baseDir = path => fileURLToPath(new URL(path, import.meta.url));
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/currency-converter/',
   plugins: [
     vue(), 
     tailwindcss(),
