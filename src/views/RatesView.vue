@@ -1,5 +1,6 @@
 <script setup>
 import { computed, onMounted, ref } from "vue";
+
 import { useCurrencyStore } from "../stores/currency";
 
 const currencyStore = useCurrencyStore();
@@ -63,7 +64,9 @@ const filteredAndSortedData = computed(() => {
         return a.rate - b.rate;
       case "priority":
       default:
+        // eslint-disable-next-line no-case-declarations
         const aPriority = priorityOrder.indexOf(a.code);
+        // eslint-disable-next-line no-case-declarations
         const bPriority = priorityOrder.indexOf(b.code);
 
         if (aPriority !== -1 && bPriority !== -1) return aPriority - bPriority;
@@ -144,11 +147,11 @@ const exportToCSV = () => {
             <span class="material-symbols-outlined">search</span>
           </div>
           <input
-            type="text"
             v-model="searchQuery"
-            @input="currentPage = 1"
+            type="text"
             placeholder="搜尋貨幣 (例如 EUR, JPY)"
             class="form-input flex w-full h-full rounded-lg text-slate-900 dark:text-white border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 placeholder:text-slate-400 dark:placeholder:text-slate-500 px-4 pl-12 text-base font-normal leading-normal focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm"
+            @input="currentPage = 1"
           />
         </label>
 
@@ -157,8 +160,8 @@ const exportToCSV = () => {
           <div class="relative flex-1 sm:flex-none">
             <select
               v-model="sortOption"
-              @change="currentPage = 1"
               class="appearance-none w-full h-12 pl-10 pr-10 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-slate-700 dark:text-slate-300 font-medium hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors focus:outline-none cursor-pointer"
+              @change="currentPage = 1"
             >
               <option value="priority">預設熱門排序</option>
               <option value="az">代碼 A-Z</option>
@@ -176,8 +179,8 @@ const exportToCSV = () => {
 
           <!-- Export Button -->
           <button
-            @click="exportToCSV"
             class="flex-1 sm:flex-none flex items-center justify-center gap-2 h-12 px-4 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-700 text-slate-700 dark:text-slate-300 transition-colors shrink-0"
+            @click="exportToCSV"
           >
             <span class="material-symbols-outlined">download</span>
             <span class="font-medium hidden sm:inline">匯出 CSV</span>
@@ -231,17 +234,17 @@ const exportToCSV = () => {
               <td colspan="5" class="px-6 py-8 text-center text-slate-500">沒有找到符合的貨幣</td>
             </tr>
             <tr
-              v-else
               v-for="item in paginatedData"
+              v-else
               :key="item.code"
               class="group hover:bg-neutral-50 dark:hover:bg-background-dark transition-colors"
               :class="{ 'bg-primary/5 dark:bg-primary/10': item.isPinned }"
             >
               <td class="px-4 py-4 text-center whitespace-nowrap">
                 <button
-                  @click="currencyStore.togglePin(item.code)"
                   class="transition-colors hover:text-amber-500 focus:outline-none"
                   :class="item.isPinned ? 'text-amber-500' : 'text-slate-300 dark:text-slate-600'"
+                  @click="currencyStore.togglePin(item.code)"
                 >
                   <span class="material-symbols-outlined text-[18px]" :class="item.isPinned ? 'font-solid' : ''"
                     >push_pin</span
@@ -294,9 +297,9 @@ const exportToCSV = () => {
         <div class="flex items-center gap-2 order-1 sm:order-2">
           <!-- Previous Button -->
           <button
-            @click="goToPage(currentPage - 1)"
             class="flex h-10 px-3 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-slate-700 dark:text-slate-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             :disabled="currentPage === 1 || totalPages === 0"
+            @click="goToPage(currentPage - 1)"
           >
             <span class="material-symbols-outlined text-[20px]">chevron_left</span>
           </button>
@@ -306,9 +309,9 @@ const exportToCSV = () => {
 
           <!-- Next Button -->
           <button
-            @click="goToPage(currentPage + 1)"
             class="flex h-10 px-3 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-slate-700 dark:text-slate-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             :disabled="currentPage === totalPages || totalPages === 0"
+            @click="goToPage(currentPage + 1)"
           >
             <span class="material-symbols-outlined text-[20px]">chevron_right</span>
           </button>

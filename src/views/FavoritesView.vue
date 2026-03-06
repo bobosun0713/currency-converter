@@ -1,7 +1,9 @@
 <script setup>
-import { computed, onMounted, ref } from "vue";
-import { useCurrencyStore } from "../stores/currency";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+// Close dropdowns when clicking outside
 import { useRouter } from "vue-router";
+
+import { useCurrencyStore } from "../stores/currency";
 
 const currencyStore = useCurrencyStore();
 const router = useRouter();
@@ -14,9 +16,6 @@ const searchFrom = ref("");
 const searchTo = ref("");
 const isFromDropdownOpen = ref(false);
 const isToDropdownOpen = ref(false);
-
-// Close dropdowns when clicking outside
-import { onBeforeUnmount } from "vue";
 
 const handleClickOutside = e => {
   if (!e.target.closest(".searchable-select")) {
@@ -153,8 +152,8 @@ const quickConvert = (from, to) => {
         </p>
       </div>
       <button
-        @click="showAddModal = true"
         class="flex items-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors"
+        @click="showAddModal = true"
       >
         <span class="material-symbols-outlined text-[20px]">add</span>
         <span class="text-sm font-bold">新增貨幣對</span>
@@ -176,9 +175,9 @@ const quickConvert = (from, to) => {
       >
         <!-- Delete Button (visible on hover) -->
         <button
-          @click="removeFavorite(card.from, card.to)"
           class="absolute top-4 right-4 text-slate-300 hover:text-rose-500 transition-colors opacity-0 group-hover:opacity-100 z-10"
           title="移除"
+          @click="removeFavorite(card.from, card.to)"
         >
           <span class="material-symbols-outlined text-[20px]">delete</span>
         </button>
@@ -228,8 +227,8 @@ const quickConvert = (from, to) => {
 
         <div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex gap-2">
           <button
-            @click="quickConvert(card.from, card.to)"
             class="flex-1 flex items-center justify-center gap-2 h-9 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-sm font-bold transition-colors"
+            @click="quickConvert(card.from, card.to)"
           >
             <span class="material-symbols-outlined text-[18px]">currency_exchange</span>
             快速轉換
@@ -239,8 +238,8 @@ const quickConvert = (from, to) => {
 
       <!-- Add New Card Placeholder -->
       <div
-        @click="showAddModal = true"
         class="flex flex-col gap-4 rounded-xl p-6 border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-primary dark:hover:border-primary bg-transparent items-center justify-center cursor-pointer group transition-all min-h-[300px]"
+        @click="showAddModal = true"
       >
         <div
           class="size-16 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center group-hover:bg-primary/20 transition-colors"
@@ -265,8 +264,8 @@ const quickConvert = (from, to) => {
         <div class="flex justify-between items-center p-6 border-b border-slate-100 dark:border-slate-800">
           <h3 class="text-xl font-bold text-slate-900 dark:text-white">新增貨幣對</h3>
           <button
-            @click="showAddModal = false"
             class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
+            @click="showAddModal = false"
           >
             <span class="material-symbols-outlined">close</span>
           </button>
@@ -278,11 +277,11 @@ const quickConvert = (from, to) => {
               <label class="text-sm font-bold text-slate-900 dark:text-white">來源幣別 (From)</label>
               <div class="relative">
                 <input
-                  type="text"
                   v-model="searchFrom"
-                  @focus="openDropdown('from')"
+                  type="text"
                   :placeholder="newFrom || '搜尋貨幣...'"
                   class="w-full h-12 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-neutral-800 px-4 pr-10 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                  @focus="openDropdown('from')"
                 />
                 <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
                   <span class="material-symbols-outlined">search</span>
@@ -296,8 +295,8 @@ const quickConvert = (from, to) => {
                   <li
                     v-for="curr in filteredFromCurrencies"
                     :key="curr.code"
-                    @click="selectFrom(curr.code)"
                     class="px-4 py-2 hover:bg-slate-50 dark:hover:bg-neutral-700 cursor-pointer text-slate-900 dark:text-white text-sm"
+                    @click="selectFrom(curr.code)"
                   >
                     <span class="font-bold">{{ curr.code }}</span> - {{ curr.name
                     }}{{ curr.country ? ` (${curr.country})` : "" }}
@@ -313,11 +312,11 @@ const quickConvert = (from, to) => {
               <label class="text-sm font-bold text-slate-900 dark:text-white">目標幣別 (To)</label>
               <div class="relative">
                 <input
-                  type="text"
                   v-model="searchTo"
-                  @focus="openDropdown('to')"
+                  type="text"
                   :placeholder="newTo || '搜尋貨幣...'"
                   class="w-full h-12 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-neutral-800 px-4 pr-10 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                  @focus="openDropdown('to')"
                 />
                 <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
                   <span class="material-symbols-outlined">search</span>
@@ -331,8 +330,8 @@ const quickConvert = (from, to) => {
                   <li
                     v-for="curr in filteredToCurrencies"
                     :key="curr.code"
-                    @click="selectTo(curr.code)"
                     class="px-4 py-2 hover:bg-slate-50 dark:hover:bg-neutral-700 cursor-pointer text-slate-900 dark:text-white text-sm"
+                    @click="selectTo(curr.code)"
                   >
                     <span class="font-bold">{{ curr.code }}</span> - {{ curr.name
                     }}{{ curr.country ? ` (${curr.country})` : "" }}
@@ -356,15 +355,15 @@ const quickConvert = (from, to) => {
           class="p-6 border-t border-slate-100 dark:border-slate-800 flex gap-3 justify-end bg-slate-50 dark:bg-background-dark"
         >
           <button
-            @click="showAddModal = false"
             class="px-5 py-2.5 rounded-lg text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+            @click="showAddModal = false"
           >
             取消
           </button>
           <button
-            @click="handleAddFavorite"
             :disabled="newFrom === newTo"
             class="px-5 py-2.5 rounded-lg text-sm font-bold bg-primary text-white hover:bg-blue-600 disabled:opacity-50 transition-colors shadow-md shadow-primary/20"
+            @click="handleAddFavorite"
           >
             確認新增
           </button>

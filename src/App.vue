@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { RouterView } from "vue-router";
+
 import Sidebar from "./components/Sidebar.vue";
 
 const isSidebarOpen = ref(false);
@@ -16,8 +17,8 @@ const isSidebarOpen = ref(false);
     >
       <div class="flex items-center gap-4">
         <button
-          @click="isSidebarOpen = true"
           class="flex lg:hidden items-center justify-center p-2 -ml-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          @click="isSidebarOpen = true"
         >
           <span class="material-symbols-outlined">menu</span>
         </button>

@@ -1,6 +1,8 @@
 <script setup>
-import { ref, computed, onMounted, watch } from "vue";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
+// Close dropdowns when clicking outside
 import { useRoute } from "vue-router";
+
 import { useCurrencyStore } from "../stores/currency";
 
 const currencyStore = useCurrencyStore();
@@ -16,9 +18,6 @@ const searchFrom = ref("");
 const searchTo = ref("");
 const isFromDropdownOpen = ref(false);
 const isToDropdownOpen = ref(false);
-
-// Close dropdowns when clicking outside
-import { onBeforeUnmount, nextTick } from "vue";
 
 const handleClickOutside = e => {
   if (!e.target.closest(".searchable-select")) {
@@ -164,8 +163,8 @@ const openDropdown = type => {
             class="flex rounded-xl border border-slate-200 dark:border-border-dark bg-slate-50 dark:bg-background-dark focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all searchable-select relative"
           >
             <input
-              type="number"
               v-model="amount"
+              type="number"
               class="w-1/2 md:w-[60%] min-w-0 bg-transparent border-none outline-none text-slate-900 dark:text-white text-xl font-bold p-4 focus:ring-0 placeholder:text-slate-400"
             />
             <div class="w-px bg-slate-200 dark:bg-border-dark my-2 shrink-0"></div>
@@ -189,8 +188,8 @@ const openDropdown = type => {
               >
                 <div class="p-2 border-b border-slate-100 dark:border-slate-800">
                   <input
-                    type="text"
                     v-model="searchFrom"
+                    type="text"
                     placeholder="搜尋幣值或國家..."
                     class="w-full bg-slate-50 dark:bg-neutral-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary"
                   />
@@ -199,8 +198,8 @@ const openDropdown = type => {
                   <li
                     v-for="curr in filteredFromCurrencies"
                     :key="curr.code"
-                    @click="selectFrom(curr.code)"
                     class="px-3 py-2.5 hover:bg-slate-50 dark:hover:bg-neutral-700 cursor-pointer text-slate-900 dark:text-white text-sm flex flex-col justify-center"
+                    @click="selectFrom(curr.code)"
                   >
                     <span class="font-bold mb-0.5">{{ curr.code }}</span>
                     <span class="text-xs text-slate-500 dark:text-slate-400 truncate">{{
@@ -218,8 +217,8 @@ const openDropdown = type => {
 
         <!-- Swap Button -->
         <button
-          @click="swapCurrencies"
           class="flex items-center justify-center size-12 rounded-full bg-slate-100 dark:bg-background-dark border border-slate-200 dark:border-border-dark text-primary hover:bg-primary hover:text-white hover:border-primary transition-all mx-auto md:mb-1 shadow-sm shrink-0"
+          @click="swapCurrencies"
         >
           <span class="material-symbols-outlined">swap_horiz</span>
         </button>
@@ -266,8 +265,8 @@ const openDropdown = type => {
               >
                 <div class="p-2 border-b border-slate-100 dark:border-slate-800">
                   <input
-                    type="text"
                     v-model="searchTo"
+                    type="text"
                     placeholder="搜尋幣值或國家..."
                     class="w-full bg-slate-50 dark:bg-neutral-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary"
                   />
@@ -276,8 +275,8 @@ const openDropdown = type => {
                   <li
                     v-for="curr in filteredToCurrencies"
                     :key="curr.code"
-                    @click="selectTo(curr.code)"
                     class="px-3 py-2.5 hover:bg-slate-50 dark:hover:bg-neutral-700 cursor-pointer text-slate-900 dark:text-white text-sm flex flex-col justify-center"
+                    @click="selectTo(curr.code)"
                   >
                     <span class="font-bold mb-0.5">{{ curr.code }}</span>
                     <span class="text-xs text-slate-500 dark:text-slate-400 truncate">{{
@@ -305,7 +304,6 @@ const openDropdown = type => {
         </div>
         <div class="flex gap-3 w-full md:w-auto">
           <button
-            @click="triggerConvert"
             :disabled="hasConverted"
             class="flex-1 md:flex-none flex items-center justify-center gap-2 py-3 px-8 rounded-lg font-bold transition-colors shadow-md disabled:cursor-not-allowed"
             :class="
@@ -313,6 +311,7 @@ const openDropdown = type => {
                 ? 'bg-emerald-500 text-white shadow-emerald-500/20 hover:bg-emerald-600'
                 : 'bg-primary text-white hover:bg-blue-600 shadow-blue-500/30'
             "
+            @click="triggerConvert"
           >
             <span v-if="hasConverted" class="material-symbols-outlined text-[20px]">check_circle</span>
             <span v-else class="material-symbols-outlined text-[20px]">currency_exchange</span>
