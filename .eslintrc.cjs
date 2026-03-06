@@ -3,6 +3,7 @@ require("@rushstack/eslint-patch/modern-module-resolution");
 
 module.exports = {
   root: true,
+  ignorePatterns: ["dev-dist", "dist"],
   env: {
     browser: true,
     es2021: true,
@@ -25,6 +26,7 @@ module.exports = {
     "vue/require-default-prop": "error",
     "vue/require-prop-types": "error",
     "vue/attributes-order": "error",
+    "vue/no-multiple-template-root": "off",
 
     "no-console": "off",
     "no-debugger": "off",
