@@ -8,7 +8,7 @@
   --color-border-dark: #292f38;
   --color-text-secondary: #9da9b8;
 
-  --font-display: 'Manrope', sans-serif;
+  --font-display: "Manrope", sans-serif;
 }
 
 @layer base {
@@ -41,4 +41,3 @@ body {
     @apply bg-background-dark text-slate-100;
   }
 }
-

@@ -1,183 +1,271 @@
-<!DOCTYPE html>
+<!doctype html>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Currency Converter Mobile View</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#196ee6",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#111821",
-                    },
-                    fontFamily: {
-                        display: ["Manrope", "sans-serif"],
-                    },
-                },
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Currency Converter Mobile View</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#196ee6",
+              "background-light": "#f6f7f8",
+              "background-dark": "#111821"
             },
+            fontFamily: {
+              display: ["Manrope", "sans-serif"]
+            }
+          }
         }
+      };
     </script>
-</head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col items-center justify-center py-8">
-<!-- Mobile Device Simulation Container -->
-<div class="w-full max-w-md bg-white dark:bg-[#111418] rounded-[2rem] shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-800 flex flex-col h-[850px] relative">
-<!-- Header -->
-<header class="flex items-center justify-between px-6 py-5 bg-[#111418] dark:bg-[#111418] sticky top-0 z-10 border-b border-slate-800">
-<h1 class="text-white text-xl font-bold tracking-tight">GlobalRate</h1>
-</header>
-<!-- Main Scrollable Content -->
-<main class="flex-1 overflow-y-auto no-scrollbar pb-24 bg-[#111418]">
-<!-- Hero / Featured Section -->
-<div class="p-6">
-<div class="relative w-full h-40 rounded-2xl overflow-hidden shadow-lg mb-6 group">
-<div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-80 mix-blend-multiply z-10"></div>
-<div class="absolute inset-0 bg-cover bg-center z-0" data-alt="Abstract financial chart visualization" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAazNwEamk4pEVYcd7TUPXtGRAqaoOI_-9U01cpIBGMwU47F_0fbMTgAyznOezoZVjdwxW4VILTvTfNgvsdQrDLk0E76hWXKgrRLzgH9cFwPZzLIdkBzFDeLTFesD_aSWyqeTzPufI66OdSBp6ZJe7NUn9OQ-i_P2jkqcbCbY6XlsHBrYOac9mSNijbRrQTmDw5NySvuoYFtVNulZGeeZPiegWRVV7yS-zH54oMgwVd1IAKahognWzeutm6zXV1AfCSjRUZEyZpljkp');"></div>
-<div class="absolute inset-0 z-20 flex flex-col justify-end p-5">
-<span class="text-blue-100 text-sm font-medium mb-1">Market Trend</span>
-<h2 class="text-white text-xl font-bold leading-tight">EUR/USD hits new yearly high</h2>
-</div>
-</div>
-<!-- Converter Card -->
-<div class="bg-[#1c2026] rounded-2xl p-5 shadow-lg border border-slate-800">
-<div class="flex flex-col gap-5">
-<!-- Amount Input -->
-<div>
-<label class="block text-slate-400 text-sm font-medium mb-2">Amount</label>
-<div class="relative">
-<span class="absolute left-4 top-1/2 -translate-y-1/2 text-primary font-bold text-lg">$</span>
-<input class="w-full bg-[#111418] border border-slate-700 rounded-xl px-4 py-4 pl-10 text-white text-2xl font-bold focus:ring-2 focus:ring-primary focus:border-transparent outline-none placeholder-slate-600 transition-all" placeholder="0.00" type="number" value="1000.00"/>
-</div>
-</div>
-<!-- Currency Selector Row -->
-<div class="relative flex flex-col gap-4">
-<!-- From Currency -->
-<div class="flex items-center justify-between bg-[#111418] p-3 rounded-xl border border-slate-700">
-<div class="flex items-center gap-3">
-<img alt="US Flag" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1l_u0aQu5oE0Oyt0TDhDF5imrJ-oSHcGuf-3cvh6JbJ6j7SMoZ6SGTFoLhfQRBsMrgUBx-Eplhbui-gP5CsOOcoZKuwqGI_SLAw1sr6xQ08CfZ98vt17iqfGMPoW2itsL4lv2TR5tBO0jbNk8Hunic0wEF0mSLAJMtjW7or4dELrPGZvBrYYLiVqPJiQuEaCQgIzr-ksG_HKesX0claPelONMoqsk_eHfTvzses5WSyzUoBk1-0Xboyw0obqsfjQmmq5D9fiDGmn2"/>
-<div class="flex flex-col">
-<span class="text-white font-bold">USD</span>
-<span class="text-slate-400 text-xs">US Dollar</span>
-</div>
-</div>
-<span class="material-symbols-outlined text-slate-400">expand_more</span>
-</div>
-<!-- Swap Button -->
-<button class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary hover:bg-blue-600 text-white rounded-full p-2 shadow-lg border-4 border-[#1c2026] z-10 transition-transform active:scale-95">
-<span class="material-symbols-outlined">swap_vert</span>
-</button>
-<!-- To Currency -->
-<div class="flex items-center justify-between bg-[#111418] p-3 rounded-xl border border-slate-700">
-<div class="flex items-center gap-3">
-<img alt="EU Flag" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwxTPR6956Ve-7_XtKlPd-V0aU5f2i52lT6tsgAdGRJ7GizAO4Dzc-mP9KZNp2uGXYZCeek3o_O1AAJ5Hy4Sli4FcElqJAIlmQgPiTbvQ8GmimF_kxGbnmaXYSQsqTP2GMZqDU0ODfOHO62FXOj0fBObmqOM3sj-Jityh1d5NYAoc-7eUaEZ50CEeUAfzsafIDv-duzEWlMZYu59fmRUT7mi1NwJef7I0fycOyUe4NA8v32SkXquP_CUddgl6HBl2Ejn1p5f1AJyCS"/>
-<div class="flex flex-col">
-<span class="text-white font-bold">EUR</span>
-<span class="text-slate-400 text-xs">Euro</span>
-</div>
-</div>
-<span class="material-symbols-outlined text-slate-400">expand_more</span>
-</div>
-</div>
-<!-- Result Display -->
-<div class="flex justify-between items-end pt-2">
-<div>
-<p class="text-slate-400 text-sm">1 USD = 0.92 EUR</p>
-<p class="text-slate-500 text-xs mt-1">Updated 2m ago</p>
-</div>
-<div class="text-right">
-<p class="text-primary text-3xl font-extrabold tracking-tight">€920.50</p>
-</div>
-</div>
-<button class="w-full bg-primary hover:bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-900/20 transition-all active:scale-[0.98]">
-                            Convert Now
-                        </button>
-</div>
-</div>
-</div>
-<!-- Live Rates Section -->
-<div class="px-6 pb-6">
-<div class="flex items-center justify-between mb-4">
-<h3 class="text-white text-lg font-bold">Live Rates</h3>
-<a class="text-primary text-sm font-semibold hover:text-blue-400" href="#">See All</a>
-</div>
-<div class="flex flex-col gap-3">
-<!-- Rate Item 1 -->
-<div class="flex items-center justify-between p-4 bg-[#1c2026] rounded-xl border border-slate-800 hover:border-slate-700 transition-colors cursor-pointer group">
-<div class="flex items-center gap-3">
-<div class="relative">
-<img alt="GBP" class="w-10 h-10 rounded-full shadow-sm object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJHnEtJGZ-XjqHN7GRe3UcXLCRu_i4uU6E5wv8jh4TB7ZpKc1M3qK9SvfF7rHn0KcMk9Dr3u-2qlKndV9KL4IdosgBiekx12WPeAFEhMwsDs_QmXQAtjAnVXGYXvzlvB_86tP2EZs1YpFzvFHr9p845EchghG7nbtQHwgaEgda61WuXYizw4XEnPvNDoIQje-7tssYS_fV7YFB9fWRf9eTjJyMCdT1hExrZSKuZpanM4PRT3dFwOVpjyaB7nSna_reGB3mtSoAC7sg"/>
-<div class="absolute -bottom-1 -right-1 bg-[#1c2026] rounded-full p-[2px]">
-<img alt="USD" class="w-4 h-4 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZe_q6Z_w7WX0bhLRcZdYiEZGif0kYdb0JS4c7kocYvFQKorziCSqtYbHEDbTHH0SAA5kRRYkdN_eMfB1mIBuG6ulH1i1LEop97JOyXGbtUECmlxWUDxP_6OY999-7j3gE8bxc2Kr4vUu4MTEQUtlrFCu13DdwTQd5NvhLUPrKh7luabWgKnamujimtLnf1ZcG2tPmCF19kYCZpX_XOnpJQRBFI2wtzDisBWXxAcmwh4fbbcZoFF4JaatgJaTePqXmJG3NOdxm2HMT"/>
-</div>
-</div>
-<div>
-<p class="text-white font-bold">GBP / USD</p>
-<p class="text-slate-400 text-xs">British Pound</p>
-</div>
-</div>
-<div class="text-right">
-<p class="text-white font-bold">1.2645</p>
-<p class="text-emerald-400 text-xs flex items-center justify-end gap-1">
-<span class="material-symbols-outlined text-[10px] font-bold">trending_up</span>
-                                +0.45%
-                            </p>
-</div>
-</div>
-<!-- Rate Item 2 -->
-<div class="flex items-center justify-between p-4 bg-[#1c2026] rounded-xl border border-slate-800 hover:border-slate-700 transition-colors cursor-pointer group">
-<div class="flex items-center gap-3">
-<div class="relative">
-<img alt="JPY" class="w-10 h-10 rounded-full shadow-sm object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQOQo61Xo0Rkz3dCxyZojBBIaYB2di4soBAtmVOHVe6frolmEtlXYyPf3ea_EGib71p-y5__ZzqAzvk1cR7vwWykE4EDfzJnww_ddcurhOpf-8jAmEKnBC2qxL1JAphycnGaeo44yrC0UnL83l3bqeZ5fhaGtIbs7RaSJsBs9_l_0pw8RG3d4TB4RbYbgVz3N0GFXPKeOL7BvnGZVD6-lYkq-2IAQSsN70ph5bqFPMfcDoTFVJosk606qmC-_4_ywsiWdwVT7sv35w"/>
-<div class="absolute -bottom-1 -right-1 bg-[#1c2026] rounded-full p-[2px]">
-<img alt="USD" class="w-4 h-4 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABeqx-5rd_vRICd0rtVyaqFs9BgB0wInRaPQELc8QMpYbU0TxPl5hY_hcM25WekEiTTU-Upg-2isDBU_p-BX2u4Qd3SJf31KCEp1QrP2nsi0y97tnmxDTZrmB-tS5m9KOW5bk8zLS3h-Mzd1kLiuAkMxdBYyDpHRVE4bfJ3o2pDODLOcyeMOWUpvJFa977__F3rQ6mtZBqF6xMbj3rSnXmjOi1dAxxPg_yr-craf2rdbxeihZVOseQ5yPHMNt-VbP0tCfCWyjL1JXz"/>
-</div>
-</div>
-<div>
-<p class="text-white font-bold">JPY / USD</p>
-<p class="text-slate-400 text-xs">Japanese Yen</p>
-</div>
-</div>
-<div class="text-right">
-<p class="text-white font-bold">0.0067</p>
-<p class="text-rose-400 text-xs flex items-center justify-end gap-1">
-<span class="material-symbols-outlined text-[10px] font-bold">trending_down</span>
-                                -0.12%
-                            </p>
-</div>
-</div>
-<!-- Rate Item 3 -->
-<div class="flex items-center justify-between p-4 bg-[#1c2026] rounded-xl border border-slate-800 hover:border-slate-700 transition-colors cursor-pointer group">
-<div class="flex items-center gap-3">
-<div class="relative">
-<img alt="CAD" class="w-10 h-10 rounded-full shadow-sm object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsDqRB-_F2wexZCZYm_Ztpcto3o02RV60619jocJ4L69ltzWfZeeI7fCMn96Eb7_fqdgN_r8et09FukL75LL37FaWm1xc3bE_Caj69j3LpDuqDEGvSWlojoenhAlLTILA9S2Kl8hBI-KLJpkZRkhiSGtLokxNyqBAzORCxnEhgDV10ymXUBNNCUDlfFWqs9c9DM0Bmf7y-6--fOMym64ZRyfx71WNAsyv0vzfIoQT1rxkHbv5Sxg5JorzXj-h6RYVpDA6qk6fKKg0w"/>
-<div class="absolute -bottom-1 -right-1 bg-[#1c2026] rounded-full p-[2px]">
-<img alt="USD" class="w-4 h-4 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdzNNNJZH4gxAkVbfl0-jrrvaLVDiABfGnQZ0KqsE_aXN3lvkOHVI3bQ5Dg1Tdcu577zrYqZydMqJT3cWlmzl9R-rH94VavMTiNpjY3mdMMbZGV3j112sb4I55swuNQ8ZbKRaN-iwy4H2chG9KyaG8VPdKp7dWWntSYMHGBqTj3-gbdloQm9ErHyM498qjGoQot8CDhigLqH5IBCpLt5a8v7xCRWGOOC3ysZrcgLNBMP8zyaH2G24rDyJnLzpPM6sDRcOSuKjNO_LG"/>
-</div>
-</div>
-<div>
-<p class="text-white font-bold">CAD / USD</p>
-<p class="text-slate-400 text-xs">Canadian Dollar</p>
-</div>
-</div>
-<div class="text-right">
-<p class="text-white font-bold">0.7382</p>
-<p class="text-emerald-400 text-xs flex items-center justify-end gap-1">
-<span class="material-symbols-outlined text-[10px] font-bold">trending_up</span>
-                                +0.08%
-                            </p>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- Bottom Navigation Bar -->
-<nav class="absolute bottom-0 w-full bg-[#1c2026] border-t border-slate-800 px-6 py-3 flex justify-between items-center z-20"><div class="flex justify-around items-center w-full"><a class="flex flex-col items-center gap-1 group w-24" href="#"><span class="material-symbols-outlined text-primary group-hover:text-blue-400 text-2xl fill-1">currency_exchange</span><span class="text-primary group-hover:text-blue-400 text-[10px] font-medium">幣值轉換器</span></a><a class="flex flex-col items-center gap-1 group w-24" href="#"><span class="material-symbols-outlined text-slate-400 group-hover:text-white text-2xl">trending_up</span><span class="text-slate-400 group-hover:text-white text-[10px] font-medium">當前幣值匯率</span></a><a class="flex flex-col items-center gap-1 group w-24" href="#"><span class="material-symbols-outlined text-slate-400 group-hover:text-white text-2xl">favorite</span><span class="text-slate-400 group-hover:text-white text-[10px] font-medium">我的最愛</span></a></div></nav>
-</div>
-</body></html>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col items-center justify-center py-8"
+  >
+    <!-- Mobile Device Simulation Container -->
+    <div
+      class="w-full max-w-md bg-white dark:bg-[#111418] rounded-[2rem] shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-800 flex flex-col h-[850px] relative"
+    >
+      <!-- Header -->
+      <header
+        class="flex items-center justify-between px-6 py-5 bg-[#111418] dark:bg-[#111418] sticky top-0 z-10 border-b border-slate-800"
+      >
+        <h1 class="text-white text-xl font-bold tracking-tight">GlobalRate</h1>
+      </header>
+      <!-- Main Scrollable Content -->
+      <main class="flex-1 overflow-y-auto no-scrollbar pb-24 bg-[#111418]">
+        <!-- Hero / Featured Section -->
+        <div class="p-6">
+          <div class="relative w-full h-40 rounded-2xl overflow-hidden shadow-lg mb-6 group">
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-80 mix-blend-multiply z-10"
+            ></div>
+            <div
+              class="absolute inset-0 bg-cover bg-center z-0"
+              data-alt="Abstract financial chart visualization"
+              style="
+                background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAazNwEamk4pEVYcd7TUPXtGRAqaoOI_-9U01cpIBGMwU47F_0fbMTgAyznOezoZVjdwxW4VILTvTfNgvsdQrDLk0E76hWXKgrRLzgH9cFwPZzLIdkBzFDeLTFesD_aSWyqeTzPufI66OdSBp6ZJe7NUn9OQ-i_P2jkqcbCbY6XlsHBrYOac9mSNijbRrQTmDw5NySvuoYFtVNulZGeeZPiegWRVV7yS-zH54oMgwVd1IAKahognWzeutm6zXV1AfCSjRUZEyZpljkp&quot;);
+              "
+            ></div>
+            <div class="absolute inset-0 z-20 flex flex-col justify-end p-5">
+              <span class="text-blue-100 text-sm font-medium mb-1">Market Trend</span>
+              <h2 class="text-white text-xl font-bold leading-tight">EUR/USD hits new yearly high</h2>
+            </div>
+          </div>
+          <!-- Converter Card -->
+          <div class="bg-[#1c2026] rounded-2xl p-5 shadow-lg border border-slate-800">
+            <div class="flex flex-col gap-5">
+              <!-- Amount Input -->
+              <div>
+                <label class="block text-slate-400 text-sm font-medium mb-2">Amount</label>
+                <div class="relative">
+                  <span class="absolute left-4 top-1/2 -translate-y-1/2 text-primary font-bold text-lg">$</span>
+                  <input
+                    class="w-full bg-[#111418] border border-slate-700 rounded-xl px-4 py-4 pl-10 text-white text-2xl font-bold focus:ring-2 focus:ring-primary focus:border-transparent outline-none placeholder-slate-600 transition-all"
+                    placeholder="0.00"
+                    type="number"
+                    value="1000.00"
+                  />
+                </div>
+              </div>
+              <!-- Currency Selector Row -->
+              <div class="relative flex flex-col gap-4">
+                <!-- From Currency -->
+                <div class="flex items-center justify-between bg-[#111418] p-3 rounded-xl border border-slate-700">
+                  <div class="flex items-center gap-3">
+                    <img
+                      alt="US Flag"
+                      class="w-8 h-8 rounded-full object-cover"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1l_u0aQu5oE0Oyt0TDhDF5imrJ-oSHcGuf-3cvh6JbJ6j7SMoZ6SGTFoLhfQRBsMrgUBx-Eplhbui-gP5CsOOcoZKuwqGI_SLAw1sr6xQ08CfZ98vt17iqfGMPoW2itsL4lv2TR5tBO0jbNk8Hunic0wEF0mSLAJMtjW7or4dELrPGZvBrYYLiVqPJiQuEaCQgIzr-ksG_HKesX0claPelONMoqsk_eHfTvzses5WSyzUoBk1-0Xboyw0obqsfjQmmq5D9fiDGmn2"
+                    />
+                    <div class="flex flex-col">
+                      <span class="text-white font-bold">USD</span>
+                      <span class="text-slate-400 text-xs">US Dollar</span>
+                    </div>
+                  </div>
+                  <span class="material-symbols-outlined text-slate-400">expand_more</span>
+                </div>
+                <!-- Swap Button -->
+                <button
+                  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary hover:bg-blue-600 text-white rounded-full p-2 shadow-lg border-4 border-[#1c2026] z-10 transition-transform active:scale-95"
+                >
+                  <span class="material-symbols-outlined">swap_vert</span>
+                </button>
+                <!-- To Currency -->
+                <div class="flex items-center justify-between bg-[#111418] p-3 rounded-xl border border-slate-700">
+                  <div class="flex items-center gap-3">
+                    <img
+                      alt="EU Flag"
+                      class="w-8 h-8 rounded-full object-cover"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwxTPR6956Ve-7_XtKlPd-V0aU5f2i52lT6tsgAdGRJ7GizAO4Dzc-mP9KZNp2uGXYZCeek3o_O1AAJ5Hy4Sli4FcElqJAIlmQgPiTbvQ8GmimF_kxGbnmaXYSQsqTP2GMZqDU0ODfOHO62FXOj0fBObmqOM3sj-Jityh1d5NYAoc-7eUaEZ50CEeUAfzsafIDv-duzEWlMZYu59fmRUT7mi1NwJef7I0fycOyUe4NA8v32SkXquP_CUddgl6HBl2Ejn1p5f1AJyCS"
+                    />
+                    <div class="flex flex-col">
+                      <span class="text-white font-bold">EUR</span>
+                      <span class="text-slate-400 text-xs">Euro</span>
+                    </div>
+                  </div>
+                  <span class="material-symbols-outlined text-slate-400">expand_more</span>
+                </div>
+              </div>
+              <!-- Result Display -->
+              <div class="flex justify-between items-end pt-2">
+                <div>
+                  <p class="text-slate-400 text-sm">1 USD = 0.92 EUR</p>
+                  <p class="text-slate-500 text-xs mt-1">Updated 2m ago</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-primary text-3xl font-extrabold tracking-tight">€920.50</p>
+                </div>
+              </div>
+              <button
+                class="w-full bg-primary hover:bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-900/20 transition-all active:scale-[0.98]"
+              >
+                Convert Now
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Live Rates Section -->
+        <div class="px-6 pb-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-white text-lg font-bold">Live Rates</h3>
+            <a class="text-primary text-sm font-semibold hover:text-blue-400" href="#">See All</a>
+          </div>
+          <div class="flex flex-col gap-3">
+            <!-- Rate Item 1 -->
+            <div
+              class="flex items-center justify-between p-4 bg-[#1c2026] rounded-xl border border-slate-800 hover:border-slate-700 transition-colors cursor-pointer group"
+            >
+              <div class="flex items-center gap-3">
+                <div class="relative">
+                  <img
+                    alt="GBP"
+                    class="w-10 h-10 rounded-full shadow-sm object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJHnEtJGZ-XjqHN7GRe3UcXLCRu_i4uU6E5wv8jh4TB7ZpKc1M3qK9SvfF7rHn0KcMk9Dr3u-2qlKndV9KL4IdosgBiekx12WPeAFEhMwsDs_QmXQAtjAnVXGYXvzlvB_86tP2EZs1YpFzvFHr9p845EchghG7nbtQHwgaEgda61WuXYizw4XEnPvNDoIQje-7tssYS_fV7YFB9fWRf9eTjJyMCdT1hExrZSKuZpanM4PRT3dFwOVpjyaB7nSna_reGB3mtSoAC7sg"
+                  />
+                  <div class="absolute -bottom-1 -right-1 bg-[#1c2026] rounded-full p-[2px]">
+                    <img
+                      alt="USD"
+                      class="w-4 h-4 rounded-full"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZe_q6Z_w7WX0bhLRcZdYiEZGif0kYdb0JS4c7kocYvFQKorziCSqtYbHEDbTHH0SAA5kRRYkdN_eMfB1mIBuG6ulH1i1LEop97JOyXGbtUECmlxWUDxP_6OY999-7j3gE8bxc2Kr4vUu4MTEQUtlrFCu13DdwTQd5NvhLUPrKh7luabWgKnamujimtLnf1ZcG2tPmCF19kYCZpX_XOnpJQRBFI2wtzDisBWXxAcmwh4fbbcZoFF4JaatgJaTePqXmJG3NOdxm2HMT"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <p class="text-white font-bold">GBP / USD</p>
+                  <p class="text-slate-400 text-xs">British Pound</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <p class="text-white font-bold">1.2645</p>
+                <p class="text-emerald-400 text-xs flex items-center justify-end gap-1">
+                  <span class="material-symbols-outlined text-[10px] font-bold">trending_up</span>
+                  +0.45%
+                </p>
+              </div>
+            </div>
+            <!-- Rate Item 2 -->
+            <div
+              class="flex items-center justify-between p-4 bg-[#1c2026] rounded-xl border border-slate-800 hover:border-slate-700 transition-colors cursor-pointer group"
+            >
+              <div class="flex items-center gap-3">
+                <div class="relative">
+                  <img
+                    alt="JPY"
+                    class="w-10 h-10 rounded-full shadow-sm object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQOQo61Xo0Rkz3dCxyZojBBIaYB2di4soBAtmVOHVe6frolmEtlXYyPf3ea_EGib71p-y5__ZzqAzvk1cR7vwWykE4EDfzJnww_ddcurhOpf-8jAmEKnBC2qxL1JAphycnGaeo44yrC0UnL83l3bqeZ5fhaGtIbs7RaSJsBs9_l_0pw8RG3d4TB4RbYbgVz3N0GFXPKeOL7BvnGZVD6-lYkq-2IAQSsN70ph5bqFPMfcDoTFVJosk606qmC-_4_ywsiWdwVT7sv35w"
+                  />
+                  <div class="absolute -bottom-1 -right-1 bg-[#1c2026] rounded-full p-[2px]">
+                    <img
+                      alt="USD"
+                      class="w-4 h-4 rounded-full"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuABeqx-5rd_vRICd0rtVyaqFs9BgB0wInRaPQELc8QMpYbU0TxPl5hY_hcM25WekEiTTU-Upg-2isDBU_p-BX2u4Qd3SJf31KCEp1QrP2nsi0y97tnmxDTZrmB-tS5m9KOW5bk8zLS3h-Mzd1kLiuAkMxdBYyDpHRVE4bfJ3o2pDODLOcyeMOWUpvJFa977__F3rQ6mtZBqF6xMbj3rSnXmjOi1dAxxPg_yr-craf2rdbxeihZVOseQ5yPHMNt-VbP0tCfCWyjL1JXz"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <p class="text-white font-bold">JPY / USD</p>
+                  <p class="text-slate-400 text-xs">Japanese Yen</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <p class="text-white font-bold">0.0067</p>
+                <p class="text-rose-400 text-xs flex items-center justify-end gap-1">
+                  <span class="material-symbols-outlined text-[10px] font-bold">trending_down</span>
+                  -0.12%
+                </p>
+              </div>
+            </div>
+            <!-- Rate Item 3 -->
+            <div
+              class="flex items-center justify-between p-4 bg-[#1c2026] rounded-xl border border-slate-800 hover:border-slate-700 transition-colors cursor-pointer group"
+            >
+              <div class="flex items-center gap-3">
+                <div class="relative">
+                  <img
+                    alt="CAD"
+                    class="w-10 h-10 rounded-full shadow-sm object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsDqRB-_F2wexZCZYm_Ztpcto3o02RV60619jocJ4L69ltzWfZeeI7fCMn96Eb7_fqdgN_r8et09FukL75LL37FaWm1xc3bE_Caj69j3LpDuqDEGvSWlojoenhAlLTILA9S2Kl8hBI-KLJpkZRkhiSGtLokxNyqBAzORCxnEhgDV10ymXUBNNCUDlfFWqs9c9DM0Bmf7y-6--fOMym64ZRyfx71WNAsyv0vzfIoQT1rxkHbv5Sxg5JorzXj-h6RYVpDA6qk6fKKg0w"
+                  />
+                  <div class="absolute -bottom-1 -right-1 bg-[#1c2026] rounded-full p-[2px]">
+                    <img
+                      alt="USD"
+                      class="w-4 h-4 rounded-full"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdzNNNJZH4gxAkVbfl0-jrrvaLVDiABfGnQZ0KqsE_aXN3lvkOHVI3bQ5Dg1Tdcu577zrYqZydMqJT3cWlmzl9R-rH94VavMTiNpjY3mdMMbZGV3j112sb4I55swuNQ8ZbKRaN-iwy4H2chG9KyaG8VPdKp7dWWntSYMHGBqTj3-gbdloQm9ErHyM498qjGoQot8CDhigLqH5IBCpLt5a8v7xCRWGOOC3ysZrcgLNBMP8zyaH2G24rDyJnLzpPM6sDRcOSuKjNO_LG"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <p class="text-white font-bold">CAD / USD</p>
+                  <p class="text-slate-400 text-xs">Canadian Dollar</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <p class="text-white font-bold">0.7382</p>
+                <p class="text-emerald-400 text-xs flex items-center justify-end gap-1">
+                  <span class="material-symbols-outlined text-[10px] font-bold">trending_up</span>
+                  +0.08%
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- Bottom Navigation Bar -->
+      <nav
+        class="absolute bottom-0 w-full bg-[#1c2026] border-t border-slate-800 px-6 py-3 flex justify-between items-center z-20"
+      >
+        <div class="flex justify-around items-center w-full">
+          <a class="flex flex-col items-center gap-1 group w-24" href="#"
+            ><span class="material-symbols-outlined text-primary group-hover:text-blue-400 text-2xl fill-1"
+              >currency_exchange</span
+            ><span class="text-primary group-hover:text-blue-400 text-[10px] font-medium">幣值轉換器</span></a
+          ><a class="flex flex-col items-center gap-1 group w-24" href="#"
+            ><span class="material-symbols-outlined text-slate-400 group-hover:text-white text-2xl">trending_up</span
+            ><span class="text-slate-400 group-hover:text-white text-[10px] font-medium">當前幣值匯率</span></a
+          ><a class="flex flex-col items-center gap-1 group w-24" href="#"
+            ><span class="material-symbols-outlined text-slate-400 group-hover:text-white text-2xl">favorite</span
+            ><span class="text-slate-400 group-hover:text-white text-[10px] font-medium">我的最愛</span></a
+          >
+        </div>
+      </nav>
+    </div>
+  </body>
+</html>
