@@ -1,10 +1,33 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { RouterView } from "vue-router";
 
 import Sidebar from "./components/Sidebar.vue";
 
 const isSidebarOpen = ref(false);
+const isDark = ref(false);
+
+onMounted(() => {
+  const storedTheme = localStorage.getItem("theme");
+  if (storedTheme === "dark" || (!storedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    isDark.value = true;
+    document.documentElement.classList.add("dark");
+  } else {
+    isDark.value = false;
+    document.documentElement.classList.remove("dark");
+  }
+});
+
+const toggleDarkMode = () => {
+  isDark.value = !isDark.value;
+  if (isDark.value) {
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+  }
+};
 </script>
 
 <template>
@@ -30,6 +53,16 @@ const isSidebarOpen = ref(false);
           />
           <h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight">貨幣轉換器</h2>
         </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button
+          class="flex items-center justify-center p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors"
+          aria-label="Toggle Dark Mode"
+          @click="toggleDarkMode"
+        >
+          <span class="material-symbols-outlined">{{ isDark ? "light_mode" : "dark_mode" }}</span>
+        </button>
       </div>
     </header>
 
